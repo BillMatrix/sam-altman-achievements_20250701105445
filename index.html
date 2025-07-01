@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam Altman - Entrepreneur, Investor, Visionary</title>
+    <style>
+        :root {
+            --dark-blue: #1a365d;
+            --light-gray: #f7f7f7;
+            --white: #ffffff;
+            --accent: #3182ce;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 0.5rem 1rem;
+            background-color: rgba(26, 54, 93, 0.95);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            background-image: url('https://www.investopedia.com/thmb/iUfEp6JYwwtQhjlXfbs9KAOoGH4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/INV_SamAltman_GettyImages-2153474303-85e8dafc100b40f586c3ef573ee59b00.jpg');
+            background-size: cover;
+            background-position: center;
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .btn:hover {
+            background-color: #2c5282;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        section:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-blue);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-image:hover {
+            transform: scale(1.03);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .roles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .role-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .role-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .role-card-content {
+            padding: 1.5rem;
+        }
+        
+        .role-card h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .role-card-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin-top: 3rem;
+            position: relative;
+        }
+        
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 60px;
+            background-color: var(--accent);
+            border-radius: 5px 5px 0 0;
+            transition: height 1s ease;
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -30px;
+            width: 60px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .social-links i {
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                background-color: var(--dark-blue);
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+                padding: 2rem 0;
+            }
+            
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .hero-image {
+                width: 100%;
+                clip-path: none;
+                opacity: 0.2;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Sam Altman</a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#roles">Key Roles</a></li>
+                    <li><a href="#impact">Impact</a></li>
+                    <li><a href="early-life.html">Early Life</a></li>
+                    <li><a href="y-combinator.html">Y Combinator</a></li>
+                    <li><a href="openai.html">OpenAI</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Sam Altman</h1>
+                <p>Entrepreneur, Investor, and Visionary shaping the future of technology and artificial intelligence.</p>
+                <a href="#about" class="btn">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Sam Altman</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Sam Altman is a prominent American entrepreneur, investor, and technology executive. Currently serving as the CEO of OpenAI, he is at the forefront of artificial intelligence research and development. Prior to his role at OpenAI, Altman was the president of Y Combinator, one of the world's most influential startup accelerators.</p>
+                    <p>Known for his visionary thinking and strategic investments, Altman has played a pivotal role in shaping the technology landscape. His insights on entrepreneurship, technology trends, and the future of AI have made him a respected voice in the industry.</p>
+                    <p>Throughout his career, Altman has demonstrated a commitment to advancing technology that benefits humanity while being mindful of potential risks, particularly in the field of artificial intelligence.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://m.economictimes.com/thumb/msid-118365486,width-1200,height-900,resizemode-4,imgsize-33640/openai-ceo-sam-altman.jpg" alt="Sam Altman">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roles">
+        <div class="container">
+            <h2 class="section-title">Key Roles</h2>
+            <div class="roles-container">
+                <div class="role-card">
+                    <div class="role-card-image" style="background-image: url('https://openai.com/brand/assets/images/openai-logo-flat-black.svg')"></div>
+                    <div class="role-card-content">
+                        <h3>CEO of OpenAI</h3>
+                        <p>As CEO of OpenAI, Sam leads the organization's mission to ensure that artificial general intelligence benefits all of humanity. Under his leadership, OpenAI has developed groundbreaking AI systems like GPT-4 and DALL-E.</p>
+                        <a href="openai.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="role-card">
+                    <div class="role-card-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Y_Combinator_logo.svg/1200px-Y_Combinator_logo.svg.png')"></div>
+                    <div class="role-card-content">
+                        <h3>Former President of Y Combinator</h3>
+                        <p>From 2014 to 2019, Sam served as the president of Y Combinator, where he helped hundreds of startups grow and succeed. During his tenure, YC expanded its reach and influence in the startup ecosystem.</p>
+                        <a href="y-combinator.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="role-card">
+                    <div class="role-card-image" style="background-image: url('https://cdn.pixabay.com/photo/2016/11/27/21/42/stock-1863880_1280.jpg')"></div>
+                    <div class="role-card-content">
+                        <h3>Entrepreneur & Investor</h3>
+                        <p>Sam is a successful entrepreneur who founded Loopt at age 19. As an investor, he has backed numerous successful startups and continues to support innovative companies that are pushing technological boundaries.</p>
+                        <a href="early-life.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact">
+        <div class="container">
+            <h2 class="section-title">Impact</h2>
+            <p>Sam Altman's influence extends across the technology industry, from nurturing early-stage startups to advancing cutting-edge AI research. His work has had a profound impact on how we think about technology's role in society.</p>
+            
+            <div class="impact-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="companies-counter">0</div>
+                    <p>Companies funded through Y Combinator during his presidency</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="valuation-counter">$0B</div>
+                    <p>Combined valuation of YC companies</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="ai-counter">0</div>
+                    <p>Major AI breakthroughs at OpenAI</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-bar" id="bar1" style="left: 10%; height: 0%;"></div>
+                <div class="chart-label" style="left: 10%;">2018</div>
+                
+                <div class="chart-bar" id="bar2" style="left: 30%; height: 0%;"></div>
+                <div class="chart-label" style="left: 30%;">2019</div>
+                
+                <div class="chart-bar" id="bar3" style="left: 50%; height: 0%;"></div>
+                <div class="chart-label" style="left: 50%;">2020</div>
+                
+                <div class="chart-bar" id="bar4" style="left: 70%; height: 0%;"></div>
+                <div class="chart-label" style="left: 70%;">2021</div>
+                
+                <div class="chart-bar" id="bar5" style="left: 90%; height: 0%;"></div>
+                <div class="chart-label" style="left: 90%;">2022</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Sam Altman - This is an informational website</p>
+            <div class="social-links">
+                <a href="https://twitter.com/sama" target="_blank"><i>T</i></a>
+                <a href="https://www.linkedin.com/in/altmansam/" target="_blank"><i>L</i></a>
+                <a href="https://blog.samaltman.com/" target="_blank"><i>B</i></a>
+            </div>
+            <p>For more information, contact: <a href="mailto:info@samaltman-info.com" style="color: var(--accent);">info@samaltman-info.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+        
+        // Counter animation
+        function animateCounter(elementId, target, prefix = '', suffix = '') {
+            const element = document.getElementById(elementId);
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = `${prefix}${Math.floor(current)}${suffix}`;
+            }, 30);
+        }
+        
+        // Chart animation
+        function animateChart() {
+            const heights = [60, 75, 45, 90, 80];
+            for (let i = 1; i <= 5; i++) {
+                setTimeout(() => {
+                    document.getElementById(`bar${i}`).style.height = `${heights[i-1]}%`;
+                }, i * 200);
+            }
+        }
+        
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'impact') {
+                        animateCounter('companies-counter', 2000, '', '+');
+                        animateCounter('valuation-counter', 300, '$', 'B+');
+                        animateCounter('ai-counter', 5);
+                        animateChart();
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(document.getElementById('impact'));
+    </script>
+</body>
+</html>
