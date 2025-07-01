@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam Altman - Early Life & Education</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background-color: var(--white);
+            border-radius: 50% 50% 0 0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--white);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        li::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -0.2rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 100%;
+            margin: 2rem auto;
+        }
+        
+        .timeline-item {
+            padding: 1rem;
+            background-color: var(--white);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            left: -30px;
+            top: 1.5rem;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content {
+            padding-left: 1rem;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin: 2rem 0;
+        }
+        
+        .bar-chart {
+            display: flex;
+            height: 250px;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 1rem 0;
+        }
+        
+        .bar {
+            width: 60px;
+            background-color: var(--secondary-color);
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .bar:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .fact-box {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .fact-title {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        .social-links {
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--white);
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            line-height: 40px;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            .timeline-item::before {
+                display: none;
+            }
+            
+            .bar {
+                width: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Early Life & Education</h1>
+            <p class="subtitle">The formative years of Sam Altman</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="profile-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Sam_Altman_2014.jpg" alt="Sam Altman" class="profile-image">
+            <h2>Sam Altman</h2>
+            <p>Entrepreneur, Investor, and Technology Leader</p>
+        </div>
+        
+        <section class="section" id="birth-upbringing">
+            <h2>Birth and Upbringing</h2>
+            <p>Sam Altman was born on April 22, 1985, in Chicago, Illinois. He spent his formative years growing up in St. Louis, Missouri, where he would begin to develop the skills and interests that would later define his career.</p>
+            
+            <div class="fact-box">
+                <div class="fact-title">Did You Know?</div>
+                <p>St. Louis, where Sam grew up, has a rich history of innovation and has produced several notable tech entrepreneurs.</p>
+            </div>
+        </section>
+        
+        <section class="section" id="family">
+            <h2>Family</h2>
+            <p>Sam comes from a professional family background:</p>
+            <ul>
+                <li>His mother worked as a dermatologist</li>
+                <li>His father was a real estate broker</li>
+                <li>Sam is the eldest of four siblings</li>
+            </ul>
+            
+            <p>This family environment likely contributed to his drive and professional outlook from an early age.</p>
+        </section>
+        
+        <section class="section" id="tech-interest">
+            <h2>Early Interest in Technology</h2>
+            <p>Sam's passion for technology began at a young age:</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Age 8</div>
+                    <div class="timeline-content">
+                        <p>Received his first computer, an Apple Macintosh, which sparked his interest in coding and computer hardware.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Early Teens</div>
+                    <div class="timeline-content">
+                        <p>Began exploring programming and developing a deeper understanding of technology.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Technology Milestones</h3>
+                <div class="bar-chart">
+                    <div class="bar" style="height: 40%;" id="first-computer">
+                        <div class="bar-value">Age 8</div>
+                        <div class="bar-label">First Computer</div>
+                    </div>
+                    <div class="bar" style="height: 60%;" id="coding">
+                        <div class="bar-value">Early Teens</div>
+                        <div class="bar-label">Coding</div>
+                    </div>
+                    <div class="bar" style="height: 80%;" id="stanford">
+                        <div class="bar-value">2003</div>
+                        <div class="bar-label">Stanford</div>
+                    </div>
+                    <div class="bar" style="height: 100%;" id="startup">
+                        <div class="bar-value">2005</div>
+                        <div class="bar-label">First Startup</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="schooling">
+            <h2>Schooling</h2>
+            <p>Sam received his primary and secondary education at John Burroughs School, a prestigious private school located in Ladue, Missouri. This institution is known for its rigorous academic standards and has produced several notable alumni.</p>
+            
+            <p>At John Burroughs School, Sam likely developed the foundation of knowledge and skills that would later help him succeed in the tech industry and as an entrepreneur.</p>
+        </section>
+        
+        <section class="section" id="university">
+            <h2>University Education</h2>
+            <p>Sam's higher education journey was unconventional but impactful:</p>
+            <ul>
+                <li>Attended Stanford University to study computer science</li>
+                <li>Completed two years before dropping out in 2005 to pursue entrepreneurial ventures</li>
+                <li>Received an honorary degree from the University of Waterloo in 2017, recognizing his contributions to technology and business</li>
+            </ul>
+            
+            <p>This path reflects a pattern seen with many successful tech entrepreneurs who prioritize hands-on experience and real-world application over traditional educational completion.</p>
+            
+            <button class="btn" id="education-btn">Learn More About His Education</button>
+        </section>
+    </div>
+    
+    <footer>
+        <p>© 2023 Sam Altman Biography</p>
+        <p>This page provides information about Sam Altman's early life and education.</p>
+        <div class="social-links">
+            <a href="#" class="social-icon">T</a>
+            <a href="#" class="social-icon">L</a>
+            <a href="#" class="social-icon">G</a>
+        </div>
+    </footer>
+    
+    <script>
+        // Interactive elements
+        document.getElementById('education-btn').addEventListener('click', function() {
+            alert('Sam Altman attended Stanford University for two years before leaving to pursue entrepreneurship. His decision to leave formal education to focus on startups exemplifies his practical approach to learning and business.');
+        });
+        
+        // Make bars interactive
+        const bars = document.querySelectorAll('.bar');
+        bars.forEach(bar => {
+            bar.addEventListener('click', function() {
+                let info = '';
+                switch(this.id) {
+                    case 'first-computer':
+                        info = 'At age 8, Sam received his first Apple Macintosh computer, which sparked his interest in technology.';
+                        break;
+                    case 'coding':
+                        info = 'During his early teens, Sam began exploring programming and developing technical skills.';
+                        break;
+                    case 'stanford':
+                        info = 'In 2003, Sam enrolled at Stanford University to study computer science.';
+                        break;
+                    case 'startup':
+                        info = 'In 2005, Sam left Stanford to focus on his entrepreneurial journey.';
+                        break;
+                }
+                alert(info);
+            });
+        });
+        
+        // Add scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            function checkScroll() {
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (sectionTop < windowHeight * 0.75) {
+                        section.style.opacity = '1';
+                    } else {
+                        section.style.opacity = '0.7';
+                    }
+                });
+            }
+            
+            // Set initial state
+            sections.forEach(section => {
+                section.style.transition = 'opacity 0.5s ease';
+                section.style.opacity = '0.7';
+            });
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkScroll);
+            
+            // Initial check
+            checkScroll();
+        });
+        
+        // Mobile menu toggle (if needed for responsive design)
+        function toggleMobileMenu() {
+            const nav = document.querySelector('nav');
+            if (nav) {
+                nav.classList.toggle('active');
+            }
+        }
+    </script>
+</body>
+</html>
