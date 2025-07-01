@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam Altman: Quotes & Philosophy</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .quote-controls {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #1a252f;
+        }
+        
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .quote-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            font-size: 8rem;
+            color: rgba(0, 0, 0, 0.05);
+            font-family: Georgia, serif;
+        }
+        
+        .quote-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            flex-grow: 1;
+        }
+        
+        .quote-category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .featured {
+            border-left: 4px solid var(--accent);
+        }
+        
+        .random-quote {
+            background-color: var(--light);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 3rem 0;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .random-quote blockquote {
+            font-size: 1.5rem;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .chart-container {
+            margin: 4rem 0;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .chart-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+        
+        .chart {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 250px;
+            padding: 20px 0;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .bar {
+            width: 60px;
+            background: linear-gradient(to top, var(--primary), #74b9ff);
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .bar:hover {
+            background: linear-gradient(to top, var(--accent), #ff7675);
+            transform: scaleY(1.05);
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 0.8rem;
+            width: 100px;
+        }
+        
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--secondary);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .bar:hover .bar-value {
+            opacity: 1;
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer p {
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .quotes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart {
+                height: 200px;
+            }
+            
+            .bar {
+                width: 40px;
+            }
+            
+            .bar-label {
+                font-size: 0.7rem;
+                width: 80px;
+            }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            transition: var(--transition);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        .dark-mode {
+            background-color: #1a1a2e;
+            color: #e6e6e6;
+        }
+        
+        .dark-mode .quote-card {
+            background-color: #16213e;
+            color: #e6e6e6;
+        }
+        
+        .dark-mode .random-quote {
+            background-color: #16213e;
+            color: #e6e6e6;
+        }
+        
+        .dark-mode .chart-container {
+            background-color: #16213e;
+            color: #e6e6e6;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Sam_Altman_2.jpg" alt="Sam Altman" class="profile-img">
+            <h1>Sam Altman: Quotes & Philosophy</h1>
+            <p>Explore the thoughts and insights of one of the most influential figures in artificial intelligence and technology.</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="quote-controls">
+            <button class="btn" id="random-btn">Show Random Quote</button>
+            <button class="btn btn-secondary" id="filter-ai-btn">Filter AI Quotes</button>
+            <button class="btn btn-secondary" id="show-all-btn">Show All</button>
+        </div>
+        
+        <div class="random-quote">
+            <blockquote id="random-quote-text">Click "Show Random Quote" to display a quote from Sam Altman.</blockquote>
+        </div>
+        
+        <div class="chart-container">
+            <h2 class="chart-title">Sam Altman's Quote Topics</h2>
+            <div class="chart">
+                <div class="bar" style="height: 80%;">
+                    <div class="bar-value">80%</div>
+                    <div class="bar-label">AI Safety</div>
+                </div>
+                <div class="bar" style="height: 65%;">
+                    <div class="bar-value">65%</div>
+                    <div class="bar-label">AGI</div>
+                </div>
+                <div class="bar" style="height: 50%;">
+                    <div class="bar-value">50%</div>
+                    <div class="bar-label">Ethics</div>
+                </div>
+                <div class="bar" style="height: 70%;">
+                    <div class="bar-value">70%</div>
+                    <div class="bar-label">Innovation</div>
+                </div>
+                <div class="bar" style="height: 45%;">
+                    <div class="bar-value">45%</div>
+                    <div class="bar-label">Regulation</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="quotes-grid" id="quotes-container">
+            <!-- Quotes will be dynamically inserted here -->
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 Sam Altman Quotes & Philosophy</p>
+        <p>This page is dedicated to sharing the wisdom and insights of Sam Altman.</p>
+        <div class="social-links">
+            <a href="#" aria-label="Twitter">📱</a>
+            <a href="#" aria-label="LinkedIn">💼</a>
+            <a href="#" aria-label="GitHub">💻</a>
+        </div>
+    </footer>
+    
+    <div class="theme-toggle" id="theme-toggle">🌓</div>
+    
+    <script>
+        // Quotes data
+        const quotes = [
+            { text: "AI will probably most likely lead to the end of the world, but in the meantime, there'll be great companies.", category: "AI Impact" },
+            { text: "Right now, people talk about being an AI company. There was a time after the iPhone App Store launch where people talked about being a mobile company. But no software company says they're a mobile company now because it'd be unthinkable to not have a mobile app. And it'll be unthinkable not to have intelligence integrated into every product and service. It'll just be an expected, obvious thing.", category: "AI Integration" },
+            { text: "OpenAI exists to ensure AGI benefits everyone, not just a few.", category: "Mission", featured: true },
+            { text: "AI is the most powerful technology humanity has ever created.", category: "AI Impact" },
+            { text: "We need to ensure AI benefits all of humanity.", category: "Ethics" },
+            { text: "The biggest risk is not taking the development of AGI seriously enough.", category: "AI Safety", featured: true },
+            { text: "OpenAI was founded to ensure AGI is aligned with human values.", category: "Mission" },
+            { text: "The conversation around AI safety must be urgent and global.", category: "AI Safety" },
+            { text: "Regulation will come too late if we don't act early.", category: "Regulation" },
+            { text: "We are building the tools of the next era. We must get it right.", category: "Responsibility", featured: true },
+            { text: "AI will change everything—and that's both exciting and terrifying.", category: "AI Impact" },
+            { text: "Transparency and alignment are key to trustworthy AI.", category: "Ethics" },
+            { text: "AI won't replace humans. But humans with AI will replace humans without AI.", category: "AI Impact", featured: true },
+            { text: "Generative AI is a powerful tool for creativity and innovation, but we need to ensure that it is used ethically and responsibly.", category: "Generative AI" },
+            { text: "Generative AI is not a replacement for human creativity, but rather a tool that can augment and enhance it.", category: "Generative AI" },
+            { text: "Generative AI has the potential to democratize access to creative tools and empower people to express themselves in new and exciting ways.", category: "Generative AI" },
+            { text: "Generative AI has the potential to transform the way we interact with machines and make them more human-like.", category: "Generative AI" }
+        ];
+        
+        // DOM elements
+        const quotesContainer = document.getElementById('quotes-container');
+        const randomBtn = document.getElementById('random-btn');
+        const filterAiBtn = document.getElementById('filter-ai-btn');
+        const showAllBtn = document.getElementById('show-all-btn');
+        const randomQuoteText = document.getElementById('random-quote-text');
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // Initialize quotes
+        function initQuotes() {
+            quotesContainer.innerHTML = '';
+            quotes.forEach(quote => {
+                const quoteCard = document.createElement('div');
+                quoteCard.className = `quote-card ${quote.featured ? 'featured' : ''}`;
+                quoteCard.dataset.category = quote.category.toLowerCase();
+                
+                quoteCard.innerHTML = `
+                    <div class="quote-category">${quote.category}</div>
+                    <div class="quote-text">${quote.text}</div>
+                `;
+                
+                quotesContainer.appendChild(quoteCard);
+            });
+        }
+        
+        // Show random quote
+        function showRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quote = quotes[randomIndex];
+            
+            randomQuoteText.textContent = '';
+            randomQuoteText.classList.remove('fade-in');
+            
+            setTimeout(() => {
+                randomQuoteText.textContent = quote.text;
+                randomQuoteText.classList.add('fade-in');
+            }, 100);
+        }
+        
+        // Filter quotes
+        function filterQuotes(category) {
+            const quoteCards = document.querySelectorAll('.quote-card');
+            
+            quoteCards.forEach(card => {
+                if (category === 'all' || card.dataset.category.includes(category)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+        
+        // Toggle dark mode
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+        
+        // Event listeners
+        randomBtn.addEventListener('click', showRandomQuote);
+        filterAiBtn.addEventListener('click', () => filterQuotes('ai'));
+        showAllBtn.addEventListener('click', () => filterQuotes('all'));
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initQuotes();
+            showRandomQuote();
+        });
+    </script>
+</body>
+</html>
